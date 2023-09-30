@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "quantum"
+version = "0.1.0"
+description = "Quantum cats!"
+authors = ["Grzegorz Koperwas <admin@grzegorzkoperwas.site>"]
+license = "beerware"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.103.2"
+httpx = "^0.25.0"
+qiskit = "^0.44.1"
+qiskit-ibm-provider = "^0.7.0"
+qiskit-aer = "^0.12.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
