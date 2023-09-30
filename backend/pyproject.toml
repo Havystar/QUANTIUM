@@ -13,6 +13,8 @@ httpx = "^0.25.0"
 qiskit = "^0.44.1"
 qiskit-ibm-provider = "^0.7.0"
 qiskit-aer = "^0.12.2"
+uvicorn = "^0.23.2"
+matplotlib = "^3.8.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
