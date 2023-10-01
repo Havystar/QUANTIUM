@@ -1,8 +1,6 @@
 # Quantum Vortex Art
 
 Project description
-Lepiej odpalić prezentację w canvie niż PDF jeśli macie taką możliwość. (jest podpięta jako klikalny link w zakładce URL/demo)
-
 
 
 Our primary goal is to leverage quantum technology to generate intricate fractal images and then utilize stable diffusion to enhance and transform these fractals into mesmerizing art pieces. This fusion of quantum computing and advanced image processing techniques promises to unlock new dimensions of creativity in digital art.
