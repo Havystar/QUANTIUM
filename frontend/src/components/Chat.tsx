@@ -12,6 +12,7 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import { useMutation } from "@tanstack/react-query";
 import { ImageFallback } from "./ImageFallback";
+import { Disclaimer } from "./Disclaimer";
 
 export const Chat = () => {
   const [inputText, setInputText] = useState("");
@@ -83,7 +84,7 @@ export const Chat = () => {
         ) :
           <ImageFallback isLoading={isLoading} image={image} key={image} />
         }
-        < FormControl sx={{ width: !image ? "100%" : "50%" }}>
+        < FormControl sx={{ width: !image ? "100%" : "50%", maxWidth: '20cm' }}>
           <InputLabel htmlFor="outlined-adornment" color="primary">
             What do you want to create?
           </InputLabel>
@@ -110,6 +111,7 @@ export const Chat = () => {
             }
           />
         </FormControl>
+        {!image && <Disclaimer/>}
       </Box>
     </Box >
   );
