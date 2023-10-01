@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Paper,
   Button,
   Box,
   OutlinedInput,
@@ -10,26 +9,23 @@ import {
   Typography,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { UserMessage } from "./UserMessage";
-import { BotMessage } from "./BotMessage";
 import { useMutation } from "@tanstack/react-query";
-import { BotMessageLoader } from "./BotMessageLoader";
 
 export const Chat = () => {
   const [inputText, setInputText] = useState("");
-  const [messages, setMessages] = useState<any[]>([]);
+  const [image, setImage] = useState<any>("");
 
   const { mutate, isLoading } = useMutation({
     mutationFn: (query: string) =>
       fetch(
-        `https://dev.grzegorzkoperwas.site/documents/find_datasources?query=${query}`,
+        `https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=png&fl=png8`,
         {
-          method: "POST",
+          method: "GET",
         }
       )
         .then((res) => res.json())
         .then((data) => {
-          setMessages([...messages, data]);
+          setImage(data);
         }),
   });
 
@@ -39,30 +35,17 @@ export const Chat = () => {
 
   const handleSendMessage = () => {
     if (inputText.trim() === "") return;
-
-    setMessages([...messages, inputText]);
+    setImage("test");
     mutate(inputText);
     setInputText("");
   };
 
   return (
     <Box pb={12}>
-      <Paper elevation={0} style={{ padding: "16px", overflowY: "auto" }}>
-        <Stack spacing={4}>
-          {messages.map((message, index) =>
-            index % 2 === 0 ? (
-              <UserMessage key={index} message={message} />
-            ) : (
-              <BotMessage key={index} message={message} />
-            )
-          )}
-          {isLoading && <BotMessageLoader />}
-        </Stack>
-      </Paper>
       <Box
         sx={{
           boxSizing: "border-box",
-          mt: 4,
+          mt: 12,
           p: 2,
           position: "fixed",
           bottom: 0,
@@ -74,32 +57,43 @@ export const Chat = () => {
           ".MuiInputBase-root": {
             backgroundColor: "#fff",
           },
-          height: messages.length ? "auto" : "100%",
+          height: "100%",
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: !!image ? "space-between" : "center",
         }}
       >
-        {!messages.length && (
+        {!image ? (
           <Stack gap={2} mb={4}>
             <Typography variant="h2" textAlign="center">
-              Lorem ipsum dolor sit.
+              Quantum Vortex Art
             </Typography>
             <Typography textAlign="center">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              sapiente incidunt repellat aperiam optio autem nobis eaque fugit
-              vero deserunt.
+              Use your imagination to create a unique piece of art.
+              <br />
+              Combine your creativity with the power of quantum computing to create a unique piece of art.
             </Typography>
           </Stack>
-        )}
-        <FormControl sx={{ width: messages.length ? "100%" : "50%" }}>
+        ) :
+          (
+            <figure
+              style={{
+                height: "auto",
+                margin: "10vh auto 0 auto",
+              }}
+            >
+              <img src="https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=png&fl=png8" alt="Quantum Vortex Art" />
+            </figure>
+          )
+        }
+        < FormControl sx={{ width: !image ? "100%" : "50%" }}>
           <InputLabel htmlFor="outlined-adornment">
-            Type a message...
+            What do you want to create?
           </InputLabel>
           <OutlinedInput
-            label="Type a message..."
-            placeholder="Type a message..."
+            label="What do you want to create?"
+            placeholder="vortex, art, space, ..."
             fullWidth
             value={inputText}
             onChange={handleInputChange}
@@ -116,6 +110,6 @@ export const Chat = () => {
           />
         </FormControl>
       </Box>
-    </Box>
+    </Box >
   );
 };
