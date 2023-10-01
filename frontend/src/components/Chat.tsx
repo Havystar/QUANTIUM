@@ -53,7 +53,7 @@ export const Chat = () => {
           bottom: 0,
           left: 0,
           width: "100%",
-          background: "#eee",
+          background: "black",
           boxShadow: "0 3px 10px rgb(0 0 0 / 0.4)",
           borderTop: "1px solid #a3a3a3",
           ".MuiInputBase-root": {
@@ -71,10 +71,10 @@ export const Chat = () => {
         }
         {!image ? (
           <Stack gap={2} mb={4}>
-            <Typography variant="h2" textAlign="center">
+            <Typography variant="h2" textAlign="center" color="#eee">
               Quantum Vortex Art
             </Typography>
-            <Typography textAlign="center">
+            <Typography textAlign="center" color="#eee">
               Use your imagination to create a unique piece of art.
               <br />
               Combine your creativity with the power of quantum computing to create a unique piece of art.
@@ -84,14 +84,18 @@ export const Chat = () => {
           <ImageFallback isLoading={isLoading} image={image} key={image} />
         }
         < FormControl sx={{ width: !image ? "100%" : "50%" }}>
-          <InputLabel htmlFor="outlined-adornment">
+          <InputLabel htmlFor="outlined-adornment" color="primary">
             What do you want to create?
           </InputLabel>
           <OutlinedInput
             label="What do you want to create?"
             placeholder="vortex, art, space, ..."
-            fullWidth
             value={inputText}
+            sx={{
+              ['.root']: {
+                backgroundColor: 'black'
+              }
+            }}
             onChange={handleInputChange}
             endAdornment={
               <Button

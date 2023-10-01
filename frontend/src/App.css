@@ -1,3 +1,7 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+.MuiOutlinedInput-root {
+  background-color: black !important;
+}
