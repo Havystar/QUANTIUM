@@ -7,9 +7,11 @@ import {
   FormControl,
   InputLabel,
   Typography,
+  LinearProgress,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useMutation } from "@tanstack/react-query";
+import { ImageFallback } from "./ImageFallback";
 
 export const Chat = () => {
   const [inputText, setInputText] = useState("");
@@ -64,6 +66,9 @@ export const Chat = () => {
           justifyContent: !!image ? "space-between" : "center",
         }}
       >
+        {!isLoading &&
+          <LinearProgress />
+        }
         {!image ? (
           <Stack gap={2} mb={4}>
             <Typography variant="h2" textAlign="center">
@@ -76,16 +81,7 @@ export const Chat = () => {
             </Typography>
           </Stack>
         ) :
-          (
-            <figure
-              style={{
-                height: "auto",
-                margin: "10vh auto 0 auto",
-              }}
-            >
-              <img src="https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=png&fl=png8" alt="Quantum Vortex Art" />
-            </figure>
-          )
+          <ImageFallback isLoading={true} image={"https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=png&fl=png8"} />
         }
         < FormControl sx={{ width: !image ? "100%" : "50%" }}>
           <InputLabel htmlFor="outlined-adornment">
