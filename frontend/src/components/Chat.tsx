@@ -15,20 +15,21 @@ import { ImageFallback } from "./ImageFallback";
 
 export const Chat = () => {
   const [inputText, setInputText] = useState("");
-  const [image, setImage] = useState<any>("");
+  const [image, setImage] = useState<string>("");
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: (query: string) =>
-      fetch(
-        `https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=png&fl=png8`,
+    mutationFn: async (query: string) => {
+      const res = await fetch(
+        `https://dev.grzegorzkoperwas.site/quantum_image?prompt=${query}`,
         {
-          method: "GET",
+          method: "POST",
         }
       )
-        .then((res) => res.json())
-        .then((data) => {
-          setImage(data);
-        }),
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      setImage(url);
+    }
   });
 
   const handleInputChange = (e: any) => {
@@ -39,7 +40,6 @@ export const Chat = () => {
     if (inputText.trim() === "") return;
     setImage("test");
     mutate(inputText);
-    setInputText("");
   };
 
   return (
@@ -81,7 +81,7 @@ export const Chat = () => {
             </Typography>
           </Stack>
         ) :
-          <ImageFallback isLoading={true} image={"https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=png&fl=png8"} />
+          <ImageFallback isLoading={isLoading} image={image} key={image} />
         }
         < FormControl sx={{ width: !image ? "100%" : "50%" }}>
           <InputLabel htmlFor="outlined-adornment">
@@ -99,6 +99,7 @@ export const Chat = () => {
                 color="primary"
                 endIcon={<SendIcon />}
                 onClick={handleSendMessage}
+                disabled={isLoading}
               >
                 Send
               </Button>
