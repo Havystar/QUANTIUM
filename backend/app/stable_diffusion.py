@@ -11,7 +11,7 @@ from PIL import Image
 
 stable_router = APIRouter()
 
-HOST = "https://dev.grzegorzkoperwas.site"
+HOST = "http://wherever-stable-diffusion-is"
 URL = f"{HOST}/sdapi/v1/img2img"
 
 

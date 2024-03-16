@@ -1,0 +1,8 @@
+services:
+  kotki:
+    build: ./backend
+  frontend:
+    build: ./frontend
+    ports:
+      - "8000:80"
+

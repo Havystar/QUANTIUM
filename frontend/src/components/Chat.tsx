@@ -21,7 +21,7 @@ export const Chat = () => {
   const { mutate, isLoading } = useMutation({
     mutationFn: async (query: string) => {
       const res = await fetch(
-        `https://dev.grzegorzkoperwas.site/quantum_image?prompt=${query}`,
+        `/quantum_image?prompt=${query}`,
         {
           method: "POST",
         }
