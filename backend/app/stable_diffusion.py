@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Response
-from base64 import b64decode, b64encode, standard_b64encode, urlsafe_b64encode
-
-from io import BytesIO
+from base64 import b64decode, b64encode
+from os import environ
 
 from app.quantum import do_quantum_stuff
 from httpx import AsyncClient
@@ -11,8 +10,8 @@ from PIL import Image
 
 stable_router = APIRouter()
 
-HOST = "http://wherever-stable-diffusion-is"
-URL = f"{HOST}/sdapi/v1/img2img"
+HOST = environ.get("HOST", "auto")
+URL = f"http://{HOST}:7860/sdapi/v1/img2img"
 
 
 @stable_router.post("/quantum_image")

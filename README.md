@@ -1,6 +1,19 @@
 # Quantum Vortex Art
 
-Project description
+## How to run:
+
+```
+docker compose --profile auto-cpu -f ./docker-compose.yml -f stable-diffusion-webui-docker/docker-compose.yml up --build
+```
+
+Or if feeling adventurous (need to change one env variable in `./docker-compose.yml`): 
+
+```
+docker compose --profile auto -f ./docker-compose.yml -f stable-diffusion-webui-docker/docker-compose.yml up
+ --build
+```
+
+## Project description
 
 
 Our primary goal is to leverage quantum technology to generate intricate fractal images and then utilize stable diffusion to enhance and transform these fractals into mesmerizing art pieces. This fusion of quantum computing and advanced image processing techniques promises to unlock new dimensions of creativity in digital art.

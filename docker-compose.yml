@@ -1,6 +1,8 @@
 services:
   kotki:
     build: ./backend
+    environment:
+      - HOST=auto-cpu
   frontend:
     build: ./frontend
     ports:
