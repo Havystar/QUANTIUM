@@ -13,6 +13,8 @@ docker compose --profile auto -f ./docker-compose.yml -f stable-diffusion-webui-
  --build
 ```
 
+Then the project ui will be available under `http:localhost:8000`.
+
 ## Project description
 
 
